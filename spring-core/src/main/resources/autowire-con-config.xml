@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+    
+	<bean id="failReport" class="com.sample.autowiring.constructor.service.FailReportGenerator" autowire ="constructor">
+		<constructor-arg name="recordsPerPage" value="15" />
+		<constructor-arg name="totalRecords" value="100" />
+	</bean>
+
+	<bean id="successReport" class="com.sample.autowiring.constructor.service.SuccessReportGenerator" autowire ="constructor">
+		<constructor-arg name="recordsPerPage" value="15" />
+		<constructor-arg name="totalRecords" value="100" />
+	</bean>
+
+	<bean id="successMail" class="com.sample.autowiring.constructor.MailService" primary="true">
+
+		<constructor-arg name="administrator">
+			<list>
+				<value>administrator@example.org</value>
+				<value>administrator2@example.org</value>
+			</list>
+		</constructor-arg>
+		<constructor-arg name="support">
+			<set>
+				<value>support@example.org</value>
+				<value>support2@example.org</value>
+			</set>
+		</constructor-arg>
+
+	</bean>
+
+	<bean id="failMail" class="com.sample.autowiring.constructor.MailService">
+
+		<constructor-arg name="administrator">
+			<list>
+				<value>administrator@example.org</value>
+				<value>administrator2@example.org</value>
+			</list>
+		</constructor-arg>
+		<constructor-arg name="support">
+			<set>
+				<value>support@example.org</value>
+				<value>support2@example.org</value>
+			</set>
+		</constructor-arg>
+		<constructor-arg name="development">
+			<map>
+				<entry key="entry" value="development@example.org"/>
+				<entry key="entry" value="development2@example.org"/>
+			</map>
+		</constructor-arg>
+
+	</bean>
+	
+</beans>

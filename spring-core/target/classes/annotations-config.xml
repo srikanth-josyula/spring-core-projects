@@ -1,0 +1,39 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context 
+       http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<context:annotation-config />
+
+	<bean id="successReport" class="com.sample.annotations.service.SuccessReportGenerator">
+		<property name="recordsPerPage" value="50" />
+	</bean>
+
+	<bean id="successMail" class="com.sample.annotations.MailService">
+	 <qualifier type="MailType" value="success"/> 
+		<property name="support">
+			<set>
+				<value>support@example.org</value>
+				<value>support1@example.org</value>
+			</set>
+		</property>
+	</bean>
+	
+	<bean id="failMail" class="com.sample.annotations.MailService">
+	<qualifier type="MailType" value="fail"/> 
+		<property name="support">
+			<set>
+				<value>support@example.org</value>
+				<value>support1@example.org</value>
+			</set>
+		</property>
+		<property name="development">
+			<map>
+				<entry key="entry" value="development@example.org" />
+				<entry key="entry" value="development1@example.org" />
+			</map>
+		</property>
+	</bean>
+</beans>

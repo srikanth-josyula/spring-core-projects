@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="failReport" class="com.sample.dI.setter.service.FailReportGenerator">
+		<property name="recordsPerPage" value="15" />
+		<property name="totalRecords" value="100" />
+		<property name ="mailService"  ref="failMail" />
+	</bean>
+
+	<bean id="successReport" class="com.sample.dI.setter.service.SuccessReportGenerator">
+		<property name="recordsPerPage" value="15" />
+		<property name="totalRecords" value="100" />
+		<property name ="mailService" ref="successMail" />
+	</bean>
+
+	<bean id="successMail" class="com.sample.dI.setter.MailService">
+
+		<property name="administrator">
+			<list>
+				<value>administrator@example.org</value>
+				<value>administrator1@example.org</value>
+			</list>
+		</property>
+		<property name="support">
+			<set>
+				<value>support@example.org</value>
+				<value>support1@example.org</value>
+			</set>
+		</property>
+
+	</bean>
+
+	<bean id="failMail" class="com.sample.dI.setter.MailService">
+
+		<property name="administrator">
+			<list>
+				<value>administrator@example.org</value>
+				<value>administrator1@example.org</value>
+			</list>
+		</property>
+		<property name="support">
+			<set>
+				<value>support@example.org</value>
+				<value>support1@example.org</value>
+			</set>
+		</property>
+		<property name="development">
+			<map>
+				<entry key="entry" value="development@example.org"/>
+				<entry key="entry" value="development1@example.org"/>
+			</map>
+		</property>
+
+	</bean>
+</beans>
